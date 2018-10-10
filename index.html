@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+    <title>PxStack pricing calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- #google font -->
+    <link href="styles/bootstrap.min.css" rel="stylesheet"/>
+    <link href="styles/bootstrap-switch.min.css" rel="stylesheet"/>
+    <link href="styles/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/css/bootstrap-slider.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/select2.min.js"></script>
+    <script src="libs/bootstrap-switch.min.js"></script>
+    <script src="libs/jquery.validate.min.js"></script>
+    <script src="libs/additional-methods.min.js"></script>
+    <script src="libs/handlebars.js"></script>
+    <script src="libs/plugin.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/lodash.js"></script>
+    <script src="libs/sha512.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.min.js"></script>
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="row" style="text-align: center">
+
+        <div class="col-xs-12 form-area">
+            <h1>PxStack pricing calculator</h1>
+            <form>
+                <h2>Please choose sizing</h2>
+
+                <input title="sizing" id="ex1" type="text" style="width: 500px"
+                       data-slider-tooltip="hide"
+                       data-slider-ticks="[0, 1, 2, 3, 4, 5]"
+                       data-slider-ticks-snap-bounds="30"
+                       data-slider-ticks-labels='["20 users", "50 users", "100 users", "150 users", "250 users", "500 users"]'
+                       data-slider-min="0"
+                       data-slider-max="5"
+                       data-slider-step="1"
+                       data-slider-value="0"/>
+
+                <br/>
+
+                <table border="1" style="margin-top: 20px">
+                    <tr>
+                        <th>Storage</th>
+                        <td id="xs-features" class="hidden">
+                            200 GB storage
+                        </td>
+                        <td id="s-features" class="hidden">
+                            500 GB storage
+                        </td>
+                        <td id="m-features" class="hidden">
+                            1 TB storage
+                        </td>
+                        <td id="l-features" class="hidden">
+                            1.5 TB storage
+                        </td>
+                        <td id="xl-features" class="hidden">
+                            2 TB storage
+                        </td>
+                        <td id="xxl-features" class="hidden">
+                            3 TB storage
+                        </td>
+                    </tr>
+                </table>
+
+
+                <h2>Select the PxApps to configure your Paperless Xperience</h2>
+
+                <table border="1" style="margin: 50px auto">
+                    <tr>
+                        <th>Use bulk discount</th>
+                        <td><input title="bulk" type="checkbox" name="bulk" value="bulk"></td>
+                    </tr>
+                </table>
+
+
+                <table border="1">
+                    <tr>
+                        <th>PxStore</th>
+                        <td>Store and share your files, collaborate effectively.</td>
+                        <td>
+                            <input title="pxstore" type="checkbox" name="pxstore" value="pxstore" checked>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>PxSign</th>
+                        <td>Sign and seal your documents electronically.</td>
+                        <td>
+                            <input title="pxsign" type="checkbox" name="pxsign" value="pxsign">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>PxScan</th>
+                        <td>Scan and digitize your docs anywhere, access them easily.</td>
+                        <td>
+                            <input title="pxscan" type="checkbox" name="pxscan" value="pxscan">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>PxApprove</th>
+                        <td>Fill in forms, approve and manage any requests.</td>
+                        <td>
+                            <input title="pxapprove" type="checkbox" name="pxapprove" value="pxapprove">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>PxCreate</th>
+                        <td>Compose letters, manage your eCorrespondence.</td>
+                        <td>
+                            <input title="pxcreate" type="checkbox" name="pxcreate" value="pxcreate">
+                        </td>
+                    </tr>
+                </table>
+
+                <h2>Please select payment option</h2>
+
+                <div style="text-align: left; width: 100px; margin: 0 auto">
+                    <p><input type="radio" name="payment" id="payment1" value="Quarterly" checked><label for="payment1">Quarterly</label></p>
+                    <p><input type="radio" name="payment" id="payment2" value="Yearly"><label for="payment2">Yearly</label></p>
+                </div>
+
+                <h2>Promocode</h2>
+
+                <div class="form-group" style="width: 200px; margin: 0 auto">
+                    <input title="promo" class="form-control" type="text" name="promo" id="promo" style="color: black; width: 200px">
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col-xs-12" style="margin: 50px 0">
+            <table border="1" style="width: 300px">
+                <tr id="promoTextRow" class="hidden">
+                    <th colspan="2" id="promoText"></th>
+                </tr>
+                <tr>
+                    <th>List price</th>
+                    <td class="price" style="width: 130px"><span id="price-without-discount"></span></td>
+                </tr>
+                <tr>
+                    <th>Bulk discount</th>
+                    <td class="price"><span id="bulk-discount"></span></td>
+                </tr>
+                <tr>
+                    <th>Payment discount</th>
+                    <td class="price"><span id="pricing-discount"></span></td>
+                </tr>
+                <tr>
+                    <th>Final price after discount</th>
+                    <td class="price"><span id="price-with-discount"></span></td>
+                </tr>
+            </table>
+            <small>All the fees are calculated on monthly basis</small>
+        </div>
+    </div>
+</div>
+
+<script src="page.js?v=1.0"></script>
+
+
+</body>
+
+
+</html>
