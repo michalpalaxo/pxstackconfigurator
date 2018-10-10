@@ -2,26 +2,32 @@
 let base = [
     {
         name: "xs",
+        label: "20 users",
         price: 276
     },
     {
         name: "s",
+        label: "50 users",
         price: 664
     },
     {
         name: "m",
+        label: "100 users",
         price: 1327
     },
     {
         name: "l",
+        label: "150 users",
         price: 1937
     },
     {
         name: "xl",
+        label: "250 users",
         price: 3211
     },
     {
         name: "xxl",
+        label: "500 users",
         price: 6099
     }
 ];
@@ -61,6 +67,42 @@ let generalPromo = {
     promoDiscount: 10
 };
 
+//define extras
+let extras = {
+    "corporate-skin": {
+        type: "bool",
+        price: 100
+    },
+    "whitelabeling": {
+        type: "bool",
+        price: 100
+    },
+    "pxstack-workflows": {
+        type: "num",
+        price: 100
+    },
+    "pxstore-extras": {
+        type: "num",
+        price: 100
+    },
+    "pxsign-extras": {
+        type: "num",
+        price: 100
+    },
+    "pxscan-extras": {
+        type: "num",
+        price: 100
+    },
+    "pxapprove-extras": {
+        type: "num",
+        price: 100
+    },
+    "pxcreate-extras": {
+        type: "num",
+        price: 100
+    }
+};
+
 
 //initialize checkbox switch for each utility feature
 _.each(utility, (value, key) => {
@@ -82,14 +124,24 @@ $("[name='bulk']").bootstrapSwitch({
 
 //initialize corporate skin
 $("[name='corporate-skin']").bootstrapSwitch({
-    //onSwitchChange: computePrice
+    onSwitchChange: computePrice
 });
 
 //initialize corporate whitelabeling
 $("[name='whitelabeling']").bootstrapSwitch({
-    //onSwitchChange: computePrice
+    onSwitchChange: computePrice
 });
 
+//initialize number extras
+_.each(extras, (value, key) => {
+    let item = $("[name='" + key + "']");
+
+    if (value.type === "num") {
+        item.change(() => {
+            computePrice();
+        });
+    }
+});
 
 
 //initialize promocode
@@ -100,8 +152,10 @@ $("[name='promo']").blur(() => {
 //initilize slider for sizing
 let slider = $("#slider1").slider({
     ticks: [0, 1, 2, 3, 4, 5],
-    ticks_labels: ["20 users", "50 users", "100 users", "150 users", "250 users", "500 users"],
-    ticks_snap_bounds: 30,
+    ticks_labels: _.map(base, (o) => {
+        return o.label;
+    }),
+    ticks_snap_bounds: 30
 }).on('change', () => {
     computePrice();
 });
@@ -146,6 +200,7 @@ function computePrice() {
     let bulkDiscount = -20;
     let pricingDiscount = 0;
 
+    //calculate utility pricing
     _.each(utility, (value, key) => {
         let extras = $("." + key + "-extras");
 
@@ -162,6 +217,25 @@ function computePrice() {
 
             nonDiscountedPrice += pxAppPrice;
             bulkDiscount += 10;
+        }
+    });
+
+    let extrasPricing = 0;
+
+    //calculat extras pricing
+    _.each(extras, (value, key) => {
+        let item = $("[name='" + key + "']");
+
+        if (value.type === 'bool') {
+            if (item[0].checked) {
+                $("#" + key + "-price").text(formatNum(value.price));
+                extrasPricing += value.price;
+            } else {
+                $("#" + key + "-price").text(formatNum(0));
+            }
+        } else {
+            $("#" + key + "-price").text(formatNum(value.price * item.val()));
+            extrasPricing += value.price * item.val();
         }
     });
 
@@ -199,11 +273,14 @@ function computePrice() {
     let bulkDiscountValue = (nonDiscountedPrice / 100) * bulkDiscount;
     let pricingDiscountValue = (nonDiscountedPrice / 100) * pricingDiscount;
 
-    $("#price-without-discount").text(formatNum(nonDiscountedPrice));
-    $("#bulk-discount").text(bulkDiscount + "% (" + formatNum(bulkDiscountValue) + ")");
-    $("#pricing-discount").text(pricingDiscount + "% (" + formatNum(pricingDiscountValue) + ")");
-    $("#price-with-discount").text(formatNum(discountedPrice));
+    $(".price-without-discount").text(formatNum(nonDiscountedPrice));
+    $(".bulk-discount").text(bulkDiscount + "% (" + formatNum(-bulkDiscountValue) + ")");
+    $(".pricing-discount").text(pricingDiscount + "% (" + formatNum(-pricingDiscountValue) + ")");
+    $(".price-with-discount").text(formatNum(discountedPrice));
 
+    $(".extras-summary").text(formatNum(extrasPricing));
+
+    $(".grand-total").text(formatNum(extrasPricing + discountedPrice));
 
 }
 

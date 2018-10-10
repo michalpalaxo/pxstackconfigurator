@@ -73,6 +73,7 @@ tbody tr {
 .price {
     font-weight: 600;
     color: #404040;
+    width: 100px;
 }
 
 input[type="radio"] {

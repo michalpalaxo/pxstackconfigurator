@@ -38,9 +38,6 @@
 
                 <input title="sizing" id="slider1" type="text" style="width: 90%;"
                        data-slider-tooltip="hide"
-                       data-slider-ticks="[0, 1, 2, 3, 4, 5]"
-                       data-slider-ticks-snap-bounds="30"
-                       data-slider-ticks-labels='["20 users", "50 users", "100 users", "150 users", "250 users", "500 users"]'
                        data-slider-min="0"
                        data-slider-max="5"
                        data-slider-step="1"
@@ -159,19 +156,19 @@
                     </tr>
                     <tr>
                         <th>List price</th>
-                        <td class="price" style="width: 100px"><span id="price-without-discount"></span></td>
+                        <td class="price"><span class="price-without-discount"></span></td>
                     </tr>
                     <tr>
                         <th>Bulk discount</th>
-                        <td class="price"><span id="bulk-discount"></span></td>
+                        <td class="price"><span class="bulk-discount"></span></td>
                     </tr>
                     <tr>
                         <th>Payment discount</th>
-                        <td class="price"><span id="pricing-discount"></span></td>
+                        <td class="price"><span class="pricing-discount"></span></td>
                     </tr>
                     <tr>
                         <th>Final price after discount</th>
-                        <td class="price"><span id="price-with-discount"></span></td>
+                        <td class="price"><span class="price-with-discount"></span></td>
                     </tr>
                 </table>
                 <small>*All the fees are calculated on monthly basis</small>
@@ -186,34 +183,68 @@
                     <tr>
                         <th>Custom corporate skin for PxStack</th>
                         <td style="width: 100px"><input title="Corporate skin" type="checkbox" name="corporate-skin" value="corporate-skin"></td>
+                        <td id="corporate-skin-price" class="price"></td>
                     </tr>
                     <tr>
                         <th>Complete whitelabeling and custom domain</th>
                         <td><input title="Whitelabeling" type="checkbox" name="whitelabeling" value="whitelabeling"></td>
+                        <td id="whitelabeling-price" class="price"></td>
                     </tr>
                     <tr>
                         <th>Add custom workflows for PxStack</th>
                         <td><input title="pxstack-workflows" class="form-control" type="number" min="0" name="pxstack-workflows" id="pxstack-workflows"></td>
+                        <td id="pxstack-workflows-price" class="price"></td>
                     </tr>
                     <tr class="pxstore-extras hidden">
                         <th>Add custom archiving forms for PxStore</th>
                         <td><input title="pxstore-extras" class="form-control" type="number" min="0" name="pxstore-extras" id="pxstore-extras"></td>
+                        <td id="pxstore-extras-price" class="price"></td>
                     </tr>
                     <tr class="pxsign-extras hidden">
                         <th>Add custom eSigning templates for PxSign</th>
                         <td><input title="pxsign-extras" class="form-control" type="number" min="0" name="pxsign-extras" id="pxsign-extras"></td>
+                        <td id="pxsign-extras-price" class="price"></td>
                     </tr>
                     <tr class="pxscan-extras hidden">
                         <th>Add custom indexing forms for PxScan</th>
                         <td><input title="pxscan-extras" class="form-control" type="number" min="0" name="pxscan-extras" id="pxscan-extras"></td>
+                        <td id="pxscan-extras-price" class="price"></td>
                     </tr>
                     <tr class="pxapprove-extras hidden">
                         <th>Add custom request forms for PxApprove</th>
                         <td><input title="pxapprove-extras" class="form-control" type="number" min="0" name="pxapprove-extras" id="pxapprove-extras"></td>
+                        <td id="pxapprove-extras-price" class="price"></td>
                     </tr>
                     <tr class="pxcreate-extras hidden">
                         <th>Add custom templates for PxCreate</th>
                         <td><input title="pxcreate-extras" class="form-control" type="number" min="0" name="pxcreate-extras" id="pxcreate-extras"></td>
+                        <td id="pxcreate-extras-price" class="price"></td>
+                    </tr>
+                    <tr>
+                        <th>Extras total</th>
+                        <td></td>
+                        <td class="price extras-summary"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Summary</h2>
+
+                <table border="1">
+                    <tr>
+                        <th>Final price after discount</th>
+                        <td class="price"><span class="price-with-discount"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Extras price</th>
+                        <td class="price"><span class="extras-summary"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Grand total</th>
+                        <td class="price"><span class="grand-total"></span></td>
                     </tr>
                 </table>
             </div>
@@ -221,22 +252,25 @@
 
         <div class="row" style="margin-bottom: 150px">
             <div class="col-xs-12">
-                <h2>Contact</h2>
+                <h2>Lead registration</h2>
 
                 <p>
-                    Would you like to order this PxStack configuration right away? Or would you like to be contacted by one of
-                    our representatives and learn more about the benefits PxStack brings to your organization? Please leave us your contact
-                    details here:
+                    To register and confirm the PxStack configuration above, please enter the client details in the form below and click submit.
                 </p>
 
                 <div class="form-group ">
-                    <label for="name">Name*:</label>
-                    <input title="name" class="form-control" type="text" name="name" id="name" required>
+                    <label for="customer-name">Customer Name*:</label>
+                    <input title="customer-name" class="form-control" type="text" name="customer-name" id="customer-name" required>
+                </div>
+
+                <div class="form-group ">
+                    <label for="contact-person">Contact Person*:</label>
+                    <input title="contact-person" class="form-control" type="text" name="contact-person" id="contact-person" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email*:</label>
-                    <input title="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" type="email" name="email" id="email" required>
+                    <label for="contact-email">Contact Email*:</label>
+                    <input title="contact-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" type="email" name="contact-email" id="contact-email" required>
                 </div>
 
                 <div class="form-group">
