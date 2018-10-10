@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../images/bg-masthead.jpg);
+    background: linear-gradient(to bottom, rgba(22, 22, 22, .1) 0, rgba(22, 22, 22, .5) 75%, #161616 100%), url(../images/bg-masthead.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -51,8 +51,8 @@ table td, table th {
 
 table th {
     color: white;
-    background-color: #64a19d;
-    opacity: 0.8;
+    background-color: rgba(100, 161, 167, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 table tbody tr {
@@ -153,27 +153,30 @@ input[type="radio"]:checked + label::after {
 }
 
 .slider-handle {
-    background-image: linear-gradient(to bottom,#4f837f 0,#4f837f 100%) !important;
-    background-image: -o-linear-gradient(top,#4f837f 0,#4f837f 100%) !important;
-    background-image: linear-gradient(to bottom,#4f837f 0,#4f837f 100%) !important;
+    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
+    background-image: -o-linear-gradient(top, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
+    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
 }
 
 .slider-tick.in-selection {
-    background-image: -webkit-linear-gradient(top,#64a19d 0,#64a19d 100%) !important;
-    background-image: -o-linear-gradient(top,#64a19d 0,#64a19d 100%) !important;
-    background-image: linear-gradient(to bottom,#64a19d 0,#64a19d 100%) !important;
+    background-image: -webkit-linear-gradient(top, rgba(100, 161, 167, 1) 0, rgba(100, 161, 167, 1) 100%) !important;
+    background-image: -o-linear-gradient(top, rgba(100, 161, 167, 1) 0, rgba(100, 161, 167, 1) 100%) !important;
+    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 1) 0, rgba(100, 161, 167, 1) 100%) !important;
 }
 
 .slider-selection.tick-slider-selection {
-    background-image: -webkit-linear-gradient(top,#64a19d 0,#64a19d 100%) !important;
-    background-image: -o-linear-gradient(top,#64a19d 0,#64a19d 100%) !important;
-    background-image: linear-gradient(to bottom,#64a19d 0,#64a19d 100%) !important;
+    background-image: -webkit-linear-gradient(top, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
+    background-image: -o-linear-gradient(top, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
+    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
-    background: #64a19d;
+    background: rgba(100, 161, 167, 0.6);
 }
 
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default {
+    background: rgba(238, 238, 238, 0.6)
+}
 
 .btn {
     -webkit-box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
@@ -186,11 +189,11 @@ input[type="radio"]:checked + label::after {
 }
 
 .btn-primary {
-    background-color: #64a19d;
+    background-color: rgba(100, 161, 167, 0.6);
 }
 
 .btn-primary:hover {
-    background-color: #4f837f;
+    background-color: rgba(79, 131, 127, 0.6);
 }
 
 .btn-primary:focus {

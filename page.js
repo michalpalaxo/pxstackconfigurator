@@ -36,26 +36,31 @@ let base = [
 //define utility features
 let utility = {
     pxstore: {
+        name: 'PxStore',
         multiplier: 1,
         promoHash: "2b9a5cd2bd0ab0ab466bc6392085df2aa77dac0aad0d4da91d5e77953858091646000d1aac02461971f2815e61c851c5bc7afb74df7c7374782988304777f71e",
         promoDiscount: 20
     },
     pxsign: {
+        name: 'PxSign',
         multiplier: 1.2,
         promoHash: "b78d81e171706abb851aaab048bc122c6732a0c08923b19479c229c720ab896a6f06a9b56f7bd512fd2e1c917213fc3c5796ba6ed6781a022f2239401f7afe44",
         promoDiscount: 10
     },
     pxscan: {
+        name: 'PxScan',
         multiplier: 1.2,
         promoHash: "fa25ca9dd3d0b88f9fc8a6a5537e25187f3a9554db542d3424c5fb097b50fec101ca369ff6b78ba8012a0041da89f72b44ba2ebdd5b27bbbbbe66b7c4065bb7d",
         promoDiscount: 10
     },
     pxapprove: {
+        name: 'PxApprove',
         multiplier: 1.3,
         promoHash: "ed99296162ada56bbe54675cec988b2cb150c702512785d1a9327a9ca2c2b094431e7503e5ecd762e2242e653bd4286d8fc117828ec36ebe4172ccbe40aca3c6",
         promoDiscount: 10
     },
     pxcreate: {
+        name: 'PxCreate',
         multiplier: 1.5,
         promoHash: "7732c7e6b3d582ab228bbd585d44022c118da16f002678756f1b7188b60f010d51e21e1f59b915af830bddd233b76b0ec8ed452a1bb6a3c116ee06e8edac9d35",
         promoDiscount: 10
@@ -196,6 +201,7 @@ function computePrice() {
     let baseName = base[index].name;
     let nonDiscountedPrice = 0;
     let promoText = "";
+    let selectedApps = [];
 
     let bulkDiscount = -20;
     let pricingDiscount = 0;
@@ -209,9 +215,10 @@ function computePrice() {
             extras.removeClass('hidden');
 
             let pxAppPrice = basePrice * value.multiplier;
+            selectedApps.push(value.name);
 
             if (checkHash(promoCode, value.promoHash)) {
-                promoText = "Promocode for " + value.promoDiscount + "% discount on " + key;
+                promoText = "Promocode for " + value.promoDiscount + "% discount on " + value.name;
                 pxAppPrice = (pxAppPrice / 100) * (100 - value.promoDiscount);
             }
 
@@ -222,7 +229,7 @@ function computePrice() {
 
     let extrasPricing = 0;
 
-    //calculat extras pricing
+    //calculate extras pricing
     _.each(extras, (value, key) => {
         let item = $("[name='" + key + "']");
 
@@ -279,6 +286,11 @@ function computePrice() {
     $(".price-with-discount").text(formatNum(discountedPrice));
 
     $(".extras-summary").text(formatNum(extrasPricing));
+
+
+    if (selectedApps.length > 0) {
+        $(".selected-apps").text("(" + selectedApps.join(', ') + ")");
+    }
 
     $(".grand-total").text(formatNum(extrasPricing + discountedPrice));
 
