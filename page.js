@@ -80,13 +80,25 @@ $("[name='bulk']").bootstrapSwitch({
     onSwitchChange: computePrice
 });
 
+//initialize corporate skin
+$("[name='corporate-skin']").bootstrapSwitch({
+    //onSwitchChange: computePrice
+});
+
+//initialize corporate whitelabeling
+$("[name='whitelabeling']").bootstrapSwitch({
+    //onSwitchChange: computePrice
+});
+
+
+
 //initialize promocode
 $("[name='promo']").blur(() => {
     computePrice();
 });
 
 //initilize slider for sizing
-let slider = $("#ex1").slider({
+let slider = $("#slider1").slider({
     ticks: [0, 1, 2, 3, 4, 5],
     ticks_labels: ["20 users", "50 users", "100 users", "150 users", "250 users", "500 users"],
     ticks_snap_bounds: 30,
@@ -113,8 +125,6 @@ function formatNum(num) {
 
 //main computational function
 function computePrice() {
-    console.log('computing');
-
     //hide promo row
     $("#promoTextRow").addClass('hidden');
 
@@ -135,17 +145,14 @@ function computePrice() {
 
     let bulkDiscount = -20;
     let pricingDiscount = 0;
-    let featureCount = 0;
-
-    //first iteration, check how many features are checked
-    _.each(utility, (value, key) => {
-        if ($("[name='" + key + "']")[0].checked) {
-            featureCount++;
-        }
-    });
 
     _.each(utility, (value, key) => {
+        let extras = $("." + key + "-extras");
+
+        extras.addClass('hidden');
         if ($("[name='" + key + "']")[0].checked) {
+            extras.removeClass('hidden');
+
             let pxAppPrice = basePrice * value.multiplier;
 
             if (checkHash(promoCode, value.promoHash)) {
@@ -160,9 +167,9 @@ function computePrice() {
 
     //reset features for each sizing
     _.each(base, (item) => {
-        $("#" + item.name + "-features").addClass('hidden');
+        $("." + item.name + "-features").addClass('hidden');
     });
-    $("#" + baseName + "-features").removeClass('hidden');
+    $("." + baseName + "-features").removeClass('hidden');
 
 
     //additional discount for yearly pricing

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- #google font -->
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <link href="styles/bootstrap.min.css" rel="stylesheet"/>
     <link href="styles/bootstrap-switch.min.css" rel="stylesheet"/>
     <link href="styles/select2.min.css" rel="stylesheet"/>
@@ -28,14 +29,14 @@
 <body>
 
 <div class="wrapper">
-    <div class="row" style="text-align: center">
+    <form onsubmit="return false;">
 
-        <div class="col-xs-12 form-area">
-            <h1>PxStack pricing calculator</h1>
-            <form>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>PxStack pricing calculator</h1>
                 <h2>Please choose sizing</h2>
 
-                <input title="sizing" id="ex1" type="text" style="width: 500px"
+                <input title="sizing" id="slider1" type="text" style="width: 90%;"
                        data-slider-tooltip="hide"
                        data-slider-ticks="[0, 1, 2, 3, 4, 5]"
                        data-slider-ticks-snap-bounds="30"
@@ -45,39 +46,48 @@
                        data-slider-step="1"
                        data-slider-value="0"/>
 
-                <br/>
+            </div>
+        </div>
 
-                <table border="1" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <table border="1">
                     <tr>
-                        <th>Storage</th>
-                        <td id="xs-features" class="hidden">
+                        <th style="width: 50%">Storage</th>
+                        <td class="xs-features hidden">
                             200 GB storage
                         </td>
-                        <td id="s-features" class="hidden">
+                        <td class="s-features hidden">
                             500 GB storage
                         </td>
-                        <td id="m-features" class="hidden">
+                        <td class="m-features hidden">
                             1 TB storage
                         </td>
-                        <td id="l-features" class="hidden">
+                        <td class="l-features hidden">
                             1.5 TB storage
                         </td>
-                        <td id="xl-features" class="hidden">
+                        <td class="xl-features hidden">
                             2 TB storage
                         </td>
-                        <td id="xxl-features" class="hidden">
+                        <td class="xxl-features hidden">
                             3 TB storage
                         </td>
                     </tr>
                 </table>
 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
 
                 <h2>Select the PxApps to configure your Paperless Xperience</h2>
 
-                <table border="1" style="margin: 50px auto">
+                <table border="1">
                     <tr>
                         <th>Use bulk discount</th>
-                        <td><input title="bulk" type="checkbox" name="bulk" value="bulk"></td>
+                        <td style="width: 100px"><input title="bulk" type="checkbox" name="bulk" value="bulk"></td>
                     </tr>
                 </table>
 
@@ -86,7 +96,7 @@
                     <tr>
                         <th>PxStore</th>
                         <td>Store and share your files, collaborate effectively.</td>
-                        <td>
+                        <td style="width: 100px">
                             <input title="pxstore" type="checkbox" name="pxstore" value="pxstore" checked>
                         </td>
                     </tr>
@@ -119,48 +129,133 @@
                         </td>
                     </tr>
                 </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
 
                 <h2>Please select payment option</h2>
 
-                <div style="text-align: left; width: 100px; margin: 0 auto">
+                <div class="radio">
                     <p><input type="radio" name="payment" id="payment1" value="Quarterly" checked><label for="payment1">Quarterly</label></p>
                     <p><input type="radio" name="payment" id="payment2" value="Yearly"><label for="payment2">Yearly</label></p>
                 </div>
 
                 <h2>Promocode</h2>
 
-                <div class="form-group" style="width: 200px; margin: 0 auto">
+                <div class="form-group">
                     <input title="promo" class="form-control" type="text" name="promo" id="promo" style="color: black; width: 200px">
                 </div>
 
-            </form>
+            </div>
         </div>
 
-        <div class="col-xs-12" style="margin: 50px 0">
-            <table border="1" style="width: 300px">
-                <tr id="promoTextRow" class="hidden">
-                    <th colspan="2" id="promoText"></th>
-                </tr>
-                <tr>
-                    <th>List price</th>
-                    <td class="price" style="width: 130px"><span id="price-without-discount"></span></td>
-                </tr>
-                <tr>
-                    <th>Bulk discount</th>
-                    <td class="price"><span id="bulk-discount"></span></td>
-                </tr>
-                <tr>
-                    <th>Payment discount</th>
-                    <td class="price"><span id="pricing-discount"></span></td>
-                </tr>
-                <tr>
-                    <th>Final price after discount</th>
-                    <td class="price"><span id="price-with-discount"></span></td>
-                </tr>
-            </table>
-            <small>All the fees are calculated on monthly basis</small>
+        <div class="row">
+            <div class="col-xs-12">
+                <table border="1" style="margin-bottom: 0">
+                    <tr id="promoTextRow" class="hidden">
+                        <th colspan="2" id="promoText"></th>
+                    </tr>
+                    <tr>
+                        <th>List price</th>
+                        <td class="price" style="width: 100px"><span id="price-without-discount"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Bulk discount</th>
+                        <td class="price"><span id="bulk-discount"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Payment discount</th>
+                        <td class="price"><span id="pricing-discount"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Final price after discount</th>
+                        <td class="price"><span id="price-with-discount"></span></td>
+                    </tr>
+                </table>
+                <small>*All the fees are calculated on monthly basis</small>
+            </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Extras</h2>
+
+                <table border="1">
+                    <tr>
+                        <th>Custom corporate skin for PxStack</th>
+                        <td style="width: 100px"><input title="Corporate skin" type="checkbox" name="corporate-skin" value="corporate-skin"></td>
+                    </tr>
+                    <tr>
+                        <th>Complete whitelabeling and custom domain</th>
+                        <td><input title="Whitelabeling" type="checkbox" name="whitelabeling" value="whitelabeling"></td>
+                    </tr>
+                    <tr>
+                        <th>Add custom workflows for PxStack</th>
+                        <td><input title="pxstack-workflows" class="form-control" type="number" name="pxstack-workflows" id="pxstack-workflows"></td>
+                    </tr>
+                    <tr class="pxstore-extras hidden">
+                        <th>Add custom archiving forms for PxStore</th>
+                        <td><input title="pxstore-extras" class="form-control" type="number" name="pxstore-extras" id="pxstore-extras"></td>
+                    </tr>
+                    <tr class="pxsign-extras hidden">
+                        <th>Add custom eSigning templates for PxSign</th>
+                        <td><input title="pxsign-extras" class="form-control" type="number" name="pxsign-extras" id="pxsign-extras"></td>
+                    </tr>
+                    <tr class="pxscan-extras hidden">
+                        <th>Add custom indexing forms for PxScan</th>
+                        <td><input title="pxscan-extras" class="form-control" type="number" name="pxscan-extras" id="pxscan-extras"></td>
+                    </tr>
+                    <tr class="pxapprove-extras hidden">
+                        <th>Add custom request forms for PxApprove</th>
+                        <td><input title="pxapprove-extras" class="form-control" type="number" name="pxapprove-extras" id="pxapprove-extras"></td>
+                    </tr>
+                    <tr class="pxcreate-extras hidden">
+                        <th>Add custom templates for PxCreate</th>
+                        <td><input title="pxcreate-extras" class="form-control" type="number" name="pxcreate-extras" id="pxcreate-extras"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 150px">
+            <div class="col-xs-12">
+                <h2>Contact</h2>
+
+                <p>
+                    Would you like to order this PxStack configuration right away? Or would you like to be contacted by one of
+                    our representatives and learn more about the benefits PxStack brings to your organization? Please leave us your contact
+                    details here:
+                </p>
+
+                <div class="form-group ">
+                    <label for="name">Name*:</label>
+                    <input title="name" class="form-control" type="text" name="name" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email*:</label>
+                    <input title="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" type="email" name="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input title="phone" class="form-control" type="text" name="phone" id="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Your comment:</label>
+                    <textarea title="comment" class="form-control" name="comment" id="comment"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary pull-right">
+                </div>
+            </div>
+        </div>
+    </form>
+
 </div>
 
 <script src="page.js?v=1.0"></script>

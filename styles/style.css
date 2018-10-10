@@ -1,17 +1,38 @@
 body {
-    background-color: #1f3447;
+    background: linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../images/bg-masthead.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     color: white;
-    font-family: OpenSans-Regular sans-serif;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 750px;
+    padding: 20px
+}
+
+.contact-form {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+.slider.slider-horizontal {
+    margin-left: 20px;
 }
 
 table {
     border: 1px solid white;
     border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 30px 0;
     position: relative;
+    width: 100%;
 }
 
 ul {
@@ -30,8 +51,8 @@ table td, table th {
 
 table th {
     color: white;
-    background-color: rgba(51, 122, 183, 0.7);
-
+    background-color: #64a19d;
+    opacity: 0.8;
 }
 
 table tbody tr {
@@ -60,7 +81,7 @@ input[type="radio"] {
     z-index: -1;
 }
 
-label {
+.radio label {
     position: relative;
     display: inline-block;
     padding: 0 0 0 2em;
@@ -69,8 +90,8 @@ label {
     cursor: pointer;
 }
 
-label::before,
-label::after {
+.radio label::before,
+.radio label::after {
     position: absolute;
     top: 0;
     left: 0;
@@ -79,7 +100,7 @@ label::after {
     height: 1.5em;
 }
 
-label::before {
+.radio label::before {
     content: " ";
     border: 2px solid #bdc3c7;
     border-radius: 20%;
@@ -92,11 +113,11 @@ input[type="radio"] + label::before {
 input[type="radio"] + label::after {
     content: " ";
     top: .25em;
-    left: .28em;
+    left: .25em;
     width: 1em;
     height: 1em;
     background: #fff;
-    border: .2em solid #2c3e50;
+    border: .2em solid #4f837f;
     border-radius: 50%;
 }
 
@@ -119,8 +140,8 @@ input[type="radio"]:checked + label::after {
     transform: scale(1);
 }
 
-label::before,
-label::after {
+.radio label::before,
+.radio label::after {
     -webkit-transition: .25s all ease;
     -o-transition: .25s all ease;
     transition: .25s all ease;
@@ -128,4 +149,54 @@ label::after {
 
 .slider-tick {
     opacity: 1 !important;
+}
+
+.slider-handle {
+    background-image: linear-gradient(to bottom,#4f837f 0,#4f837f 100%) !important;
+    background-image: -o-linear-gradient(top,#4f837f 0,#4f837f 100%) !important;
+    background-image: linear-gradient(to bottom,#4f837f 0,#4f837f 100%) !important;
+}
+
+.slider-tick.in-selection {
+    background-image: -webkit-linear-gradient(top,#64a19d 0,#64a19d 100%) !important;
+    background-image: -o-linear-gradient(top,#64a19d 0,#64a19d 100%) !important;
+    background-image: linear-gradient(to bottom,#64a19d 0,#64a19d 100%) !important;
+}
+
+.slider-selection.tick-slider-selection {
+    background-image: -webkit-linear-gradient(top,#64a19d 0,#64a19d 100%) !important;
+    background-image: -o-linear-gradient(top,#64a19d 0,#64a19d 100%) !important;
+    background-image: linear-gradient(to bottom,#64a19d 0,#64a19d 100%) !important;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+    background: #64a19d;
+}
+
+
+.btn {
+    -webkit-box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+    padding: 1.25rem 2rem;
+    font-size: 80%;
+    text-transform: uppercase;
+    letter-spacing: .15rem;
+    border: 0;
+}
+
+.btn-primary {
+    background-color: #64a19d;
+}
+
+.btn-primary:hover {
+    background-color: #4f837f;
+}
+
+.btn-primary:focus {
+    background-color: #4f837f;
+    color: white;
+}
+
+.btn-primary:active {
+    background-color: #467370 !important;
 }
