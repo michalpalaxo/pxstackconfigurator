@@ -29,7 +29,7 @@
 <body>
 
 <div class="wrapper">
-    <form onsubmit="return false;">
+    <form onsubmit="send();return false;">
 
         <div class="row">
             <div class="col-xs-12">
@@ -284,13 +284,46 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary pull-right">
+                    <input type="submit" class="btn btn-primary pull-right" id="submit" value="submit" name="submit">
                 </div>
             </div>
         </div>
     </form>
 
 </div>
+
+<script id="template" type="text/template">
+    Sizing: {{sizing}} <br/>
+    Storage: {{storage}} <br/>
+    Bulk discount: {{bulk}} <br/>
+    PxStore: {{pxstore}} <br/>
+    PxSign: {{pxsign}} <br/>
+    PxScan: {{pxscan}} <br/>
+    PxApprove: {{pxapprove}} <br/>
+    PxCreate: {{pxcreate}} <br/>
+    Payment: {{payment}} <br/>
+    Promocode: {{promocode}} <br/>
+    Promo text: {{promoText}} <br/>
+    List price: {{listPrice}} <br/>
+    Bulk discount: {{bulkDiscount}} <br/>
+    Pricing discount: {{pricingDiscount}} <br/>
+    Final price: {{finalPrice}} <br/>
+    Custom corporate skin for PxStack: {{customSkin}} <br/>
+    Complete whitelabeling and custom domain: {{whitelabeling}} <br/>
+    Add custom workflows for PxStack: {{extrasWorkflows}} <br/>
+    Add custom archiving forms for PxStore: {{extrasPxStore}} <br/>
+    Add custom eSigning templates for PxSign: {{extrasPxSign}} <br/>
+    Add custom indexing forms for PxScan: {{extrasPxScan}} <br/>
+    Add custom request forms for PxApprove: {{extrasPxApprove}} <br/>
+    Add custom templates for PxCreate: {{extrasPxCreate}} <br/>
+    PxStack Extras final price: {{extrasFinalPrice}} <br/>
+    Grand total: {{grandTotal}} <br/>
+    Customer name: {{customerName}} <br/>
+    Contact person: {{contactPerson}} <br/>
+    Contact email: {{contactEmail}} <br/>
+    Phone: {{phone}} <br/>
+    Comment: {{comment}}
+</script>
 
 <script src="page.js?v=1.0"></script>
 

@@ -51,7 +51,7 @@ table td, table th {
 
 table th {
     color: white;
-    background-color: rgba(100, 161, 167, 0.5);
+    background-color: rgba(100, 161, 167, 0.8);
     backdrop-filter: blur(5px);
 }
 
@@ -60,7 +60,7 @@ table tbody tr {
 }
 
 tbody tr:nth-child(even) {
-    background-color: rgba(245, 245, 245, 0.7);
+    background-color: rgba(245, 245, 245, 0.8);
 }
 
 tbody tr {
@@ -153,9 +153,9 @@ input[type="radio"]:checked + label::after {
 }
 
 .slider-handle {
-    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
-    background-image: -o-linear-gradient(top, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
-    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
+    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.8) 0, rgba(100, 161, 167, 0.8) 100%) !important;
+    background-image: -o-linear-gradient(top, rgba(100, 161, 167, 0.8) 0, rgba(100, 161, 167, 0.8) 100%) !important;
+    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.8) 0, rgba(100, 161, 167, 0.8) 100%) !important;
 }
 
 .slider-tick.in-selection {
@@ -165,17 +165,17 @@ input[type="radio"]:checked + label::after {
 }
 
 .slider-selection.tick-slider-selection {
-    background-image: -webkit-linear-gradient(top, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
-    background-image: -o-linear-gradient(top, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
-    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.6) 0, rgba(100, 161, 167, 0.6) 100%) !important;
+    background-image: -webkit-linear-gradient(top, rgba(100, 161, 167, 0.8) 0, rgba(100, 161, 167, 0.8) 100%) !important;
+    background-image: -o-linear-gradient(top, rgba(100, 161, 167, 0.8) 0, rgba(100, 161, 167, 0.8) 100%) !important;
+    background-image: linear-gradient(to bottom, rgba(100, 161, 167, 0.8) 0, rgba(100, 161, 167, 0.8) 100%) !important;
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
-    background: rgba(100, 161, 167, 0.6);
+    background: rgba(100, 161, 167, 0.8);
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default {
-    background: rgba(238, 238, 238, 0.6)
+    background: rgba(238, 238, 238, 0.8)
 }
 
 .btn {
@@ -189,11 +189,11 @@ input[type="radio"]:checked + label::after {
 }
 
 .btn-primary {
-    background-color: rgba(100, 161, 167, 0.6);
+    background-color: rgba(100, 161, 167, 0.8);
 }
 
 .btn-primary:hover {
-    background-color: rgba(79, 131, 127, 0.6);
+    background-color: rgba(79, 131, 127, 0.8);
 }
 
 .btn-primary:focus {

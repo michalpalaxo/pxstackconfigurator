@@ -76,15 +76,15 @@ let generalPromo = {
 let extras = {
     "corporate-skin": {
         type: "bool",
-        price: 100
+        price: 350
     },
     "whitelabeling": {
         type: "bool",
-        price: 100
+        price: 850
     },
     "pxstack-workflows": {
         type: "num",
-        price: 100
+        price: 450
     },
     "pxstore-extras": {
         type: "num",
@@ -92,7 +92,7 @@ let extras = {
     },
     "pxsign-extras": {
         type: "num",
-        price: 100
+        price: 200
     },
     "pxscan-extras": {
         type: "num",
@@ -100,11 +100,11 @@ let extras = {
     },
     "pxapprove-extras": {
         type: "num",
-        price: 100
+        price: 150
     },
     "pxcreate-extras": {
         type: "num",
-        price: 100
+        price: 550
     }
 };
 
@@ -293,6 +293,87 @@ function computePrice() {
     }
 
     $(".grand-total").text(formatNum(extrasPricing + discountedPrice));
+}
+
+//generates email template
+function generateTemplate() {
+    //Fetch the template
+    let template = document.getElementById('template').innerHTML;
+
+    //Compile the template
+    let compiled_template = Handlebars.compile(template);
+
+    //Render the template
+    let rendered = compiled_template(
+        {
+            sizing: base[slider.slider('getValue')].name,
+            storage: base[slider.slider('getValue')].label,
+            bulk: $("[name='bulk']")[0].checked ? "Yes" : "No",
+            pxstore: $("[name='pxstore']")[0].checked ? "Yes" : "No",
+            pxsign: $("[name='pxsign']")[0].checked ? "Yes" : "No",
+            pxscan: $("[name='pxscan']")[0].checked ? "Yes" : "No",
+            pxapprove: $("[name='pxapprove']")[0].checked ? "Yes" : "No",
+            pxcreate: $("[name='pxcreate']")[0].checked ? "Yes" : "No",
+            payment: $("[name='payment']")[0].checked ? "Quarterly" : "Yearly",
+            promocode: $("#promo").val(),
+            promoText: $("#promoText").text(),
+            listPrice: $(".price-without-discount").text(),
+            bulkDiscount: $(".bulk-discount").text(),
+            pricingDiscount: $(".pricing-discount").text(),
+            finalPrice: $($(".price-with-discount")[0]).text(),
+            customSkin: ($("[name='corporate-skin']")[0].checked ? "Yes" : "No") + " - " + $("#corporate-skin-price").text(),
+            whitelabeling: ($("[name='whitelabeling']")[0].checked ? "Yes" : "No") + " - " + $("#whitelabeling-price").text(),
+            extrasWorkflows: $("[name='pxstack-workflows']").val() + " - " + $("#pxstack-workflows-price").text(),
+            extrasPxStore: $("[name='pxstore-extras']").val() + " - " + $("#pxstore-extras-price").text(),
+            extrasPxSign: $("[name='pxsign-extras']").val() + " - " + $("#pxsign-extras-price").text(),
+            extrasPxScan: $("[name='pxscan-extras']").val() + " - " + $("#pxscan-extras-price").text(),
+            extrasPxApprove: $("[name='pxapprove-extras']").val() + " - " + $("#pxapprove-extras-price").text(),
+            extrasPxCreate: $("[name='pxcreate-extras']").val() + " - " + $("#pxcreate-extras-price").text(),
+            extrasFinalPrice: ($($(".extras-summary")[0])).text(),
+            grandTotal: $(".grand-total").text(),
+            customerName: $("#customer-name").val(),
+            contactPerson: $("#contact-person").val(),
+            contactEmail: $("#contact-email").val(),
+            phone: $("#phone").val(),
+            comment: $("#comment").val(),
+
+        });
+
+    return rendered;
+}
+
+//sends request to email
+function send() {
+    let text = generateTemplate();
+
+    let submitButton = $('#submit');
+
+    submitButton.addClass("disabled");
+    submitButton.prop("value", "Sending...");
+
+    $.ajax({
+        url: 'https://dev.circularo.com/api/v1/email?token=1c8c628661dea88ca18654b0b930c6da61f5a8df394b0c287fdb35e9247c9c8f',
+        type: "POST",
+        success: () => {
+            alert('Your order has been sent successfully.');
+            submitButton.removeClass("disabled");
+            submitButton.prop("value", "Submit");
+        },
+        error: () => {
+            alert('There was an error processing your request.');
+            submitButton.removeClass("disabled");
+            submitButton.prop("value", "Submit");
+        },
+        data: JSON.stringify({
+            subject: "New PxStack Order",
+            recipients: "josef.neumann@palaxo.com",
+            contentText: text,
+            contentHtml: text
+        }),
+        dataType: "json",
+        contentType: 'application/json'
+    });
+
 
 }
 
